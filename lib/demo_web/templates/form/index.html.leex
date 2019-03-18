@@ -1,0 +1,46 @@
+
+<%= form_for %Plug.Conn{}, "#", [phx_change: :form_change, phx_submit: :save], fn f -> %>
+  <h1>Form functionality examples</h1>
+
+  <h3>Changing a select shows another div based on value</h3>
+
+  <%= label f, :fruit %>
+  <%= select f, :fruit, ["Select One": "", "Apple": "apple", "Banana": "banana"], selected: @fruit %>
+  <%= error_tag f, :fruit %>
+
+  <div>
+    Fruit Value = <%= @fruit %>
+  </div>
+
+  <%= if @fruit == "apple" do %>
+  <div>Content for apple</div>
+  <% end %>
+
+  <%= if @fruit == "banana" do %>
+  <div>Now i can do seperate content for banana</div>
+  <% end %>
+
+  <h3>Clicking a link pops up a modal</h3>
+
+  <%= link "Open Modal", to: "#", phx_click: :toggle_modal %>
+
+<% modal_class = if @is_modal_open, do: "is-active", else: "" %>
+<div class="modal <%= modal_class %>">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Modal title</p>
+      <button phx-click="toggle_modal" class="delete" aria-label="close">Close</button>
+    </header>
+    <section class="modal-card-body">
+      <div>
+        <p>Labels</p>
+      </div>
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button is-success">Save changes</button>
+      <button class="button">Cancel</button>
+    </footer>
+  </div>
+</div>
+<% end %>

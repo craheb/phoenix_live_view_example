@@ -74,4 +74,5 @@ config :demo, Demo.Repo,
   password: "postgres",
   database: "demo_dev",
   hostname: "localhost",
+  port: 9977,
   pool_size: 10
